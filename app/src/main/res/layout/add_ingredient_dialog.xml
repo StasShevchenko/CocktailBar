@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AddIngredient"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+        android:layout_marginBottom="16dp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ingredient_name_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:boxCornerRadiusBottomEnd="28dp"
+        app:boxCornerRadiusBottomStart="28dp"
+        app:boxCornerRadiusTopEnd="28dp"
+        app:boxCornerRadiusTopStart="28dp"
+        app:errorEnabled="true"
+        android:hint="Title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ingredient_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:backgroundTint="@color/sky_blue"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:text="Add"
+        android:textSize="24dp"
+        android:layout_marginBottom="16dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:insetLeft="0dp"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:insetTop="0dp"
+        android:backgroundTint="@color/white"
+        android:insetRight="0dp"
+        android:textColor="@color/sky_blue"
+        android:insetBottom="0dp"
+        app:strokeColor="@color/sky_blue"
+        android:text="Cancel"
+        android:textSize="24dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
+        android:layout_marginBottom="16dp"
+        />
+</LinearLayout>
