@@ -11,23 +11,15 @@
         android:padding="16dp"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="54dp"
-            android:layout_gravity="center"
 
-            app:cardBackgroundColor="@color/light_gray"
-            android:elevation="10dp">
-            <ImageView
-                android:padding="16dp"
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/placeholder_image"
                 android:layout_width="216dp"
-                android:scaleType="center"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
+                android:scaleType="fitCenter"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:src="@drawable/placeholder"
                 android:layout_height="217dp"/>
-        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/cocktail_name_input_layout"
