@@ -10,5 +10,5 @@ data class Cocktail(
     val cocktailName: String,
     val cocktailDescription: String? = null,
     val cocktailRecipe: String? = null,
-    val cocktailIngredients: List<String>? = null
+    val cocktailIngredients: List<String> = emptyList()
 )

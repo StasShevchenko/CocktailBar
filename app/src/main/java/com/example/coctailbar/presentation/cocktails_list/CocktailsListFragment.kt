@@ -3,6 +3,7 @@ package com.example.coctailbar.presentation.cocktails_list
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -12,17 +13,20 @@ import com.example.coctailbar.MyApplication
 import com.example.coctailbar.R
 import com.example.coctailbar.databinding.CocktailsListFragmentBinding
 import com.example.coctailbar.presentation.MainActivity
+import com.example.coctailbar.presentation.add_edit_cocktail.AddEditCocktailViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class CocktailsListFragment : Fragment(R.layout.cocktails_list_fragment) {
+    private val viewModel: CocktailsListViewModel by viewModels { CocktailsListViewModel.Factory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val cocktailsDao = ((activity as MainActivity).application as MyApplication).db.cocktailsDao
 
         val binding = CocktailsListFragmentBinding.bind(view)
-        val cocktailsAdapter = CocktailsAdapter{
+        val cocktailsAdapter = CocktailsAdapter{cocktailId ->
+            val action = CocktailsListFragmentDirections.actionCocktailsListFragmentToCocktailDetailsFragment(cocktailId = cocktailId)
+            findNavController().navigate(action)
         }
 
         binding.apply {
@@ -38,9 +42,9 @@ class CocktailsListFragment : Fragment(R.layout.cocktails_list_fragment) {
 
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 launch {
-                    cocktailsDao.getAllCocktails().collectLatest {cocktails ->
+                    viewModel.cocktailsList.collectLatest {cocktails ->
                         if (cocktails.isEmpty()) {
                             binding.apply {
                                 cocktailsRecyclerView.visibility = View.GONE
@@ -60,5 +64,4 @@ class CocktailsListFragment : Fragment(R.layout.cocktails_list_fragment) {
             }
         }
     }
-
 }

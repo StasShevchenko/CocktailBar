@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CocktailsDao {
     @Query("SELECT * FROM Cocktail WHERE cocktailId = :cocktailId")
-    suspend fun getCocktailById(cocktailId: Long): List<Cocktail>
+    fun getCocktailById(cocktailId: Long): Flow<Cocktail>
 
     @Query("SELECT * FROM Cocktail")
      fun getAllCocktails(): Flow<List<Cocktail>>

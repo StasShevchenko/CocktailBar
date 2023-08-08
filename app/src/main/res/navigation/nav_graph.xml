@@ -13,14 +13,30 @@
         <action
             android:id="@+id/action_CocktailsListFragment_to_addEditCocktailFragment"
             app:destination="@id/addEditCocktailFragment" />
+        <action
+            android:id="@+id/action_CocktailsListFragment_to_CocktailDetailsFragment"
+            app:destination="@id/CocktailDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/CocktailDetailsFragment"
         android:name="com.example.coctailbar.presentation.cocktail_details.CocktailDetailsFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/cocktail_details_fragment"/>
+        tools:layout="@layout/cocktail_details_fragment">
+        <argument
+            android:name="cocktailId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_CocktailDetailsFragment_to_addEditCocktailFragment"
+            app:destination="@id/addEditCocktailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addEditCocktailFragment"
         android:name="com.example.coctailbar.presentation.add_edit_cocktail.AddEditCocktailFragment"
-        android:label="AddEditCocktailFragment" />
+        android:label="AddEditCocktailFragment" >
+        <argument
+            android:name="cocktailId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 </navigation>

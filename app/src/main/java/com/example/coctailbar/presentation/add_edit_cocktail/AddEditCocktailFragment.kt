@@ -64,15 +64,36 @@ class AddEditCocktailFragment : Fragment(R.layout.add_edit_cocktail_fragment) {
                             0,
                             binding.ingredientsChipGroup.childCount - 1
                         )
-                        ingredients.forEachIndexed { index, it ->
+                        ingredients.forEachIndexed { index, ingredient ->
                             val ingredientChip = Chip(context)
-                            ingredientChip.text = it
+                            ingredientChip.text = ingredient
                             ingredientChip.isCloseIconVisible = true
                             ingredientChip.setCloseIconTintResource(R.color.sky_blue)
                             ingredientChip.setOnClickListener {
                                 viewModel.removeIngredient(index)
                             }
-                            binding.ingredientsChipGroup.addView(ingredientChip, 0)
+                            binding.ingredientsChipGroup.addView(ingredientChip, binding.ingredientsChipGroup.childCount - 1)
+                        }
+                    }
+                }
+                launch {
+                    viewModel.currentCocktail.collectLatest {cocktail ->
+                        binding.apply {
+                            cocktail?.let {
+                                cocktailNameEditText.setText(cocktail.cocktailName)
+                                descriptionEditText.setText(cocktail.cocktailDescription)
+                                recipeEditText.setText(cocktail.cocktailRecipe)
+                                cocktail.cocktailIngredients?.forEachIndexed { index, ingredient ->
+                                    val ingredientChip = Chip(context)
+                                    ingredientChip.text = ingredient
+                                    ingredientChip.isCloseIconVisible = true
+                                    ingredientChip.setCloseIconTintResource(R.color.sky_blue)
+                                    ingredientChip.setOnClickListener {
+                                        viewModel.removeIngredient(index)
+                                    }
+                                    binding.ingredientsChipGroup.addView(ingredientChip, binding.ingredientsChipGroup.childCount - 1)
+                                }
+                            }
                         }
                     }
                 }

@@ -14,6 +14,7 @@ import com.example.coctailbar.data.cocktail_data_source.model.Cocktail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class AddEditCocktailViewModel(
@@ -21,18 +22,29 @@ class AddEditCocktailViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    private var currentCocktailId = -1L
     private var cocktailName = ""
     private var description = ""
     private var recipe = ""
 
+    private val _currentCocktail: MutableStateFlow<Cocktail?> = MutableStateFlow(null)
+    val currentCocktail: StateFlow<Cocktail?> = _currentCocktail
+
     private val _cocktailIngredients: MutableStateFlow<List<String>> = MutableStateFlow(emptyList())
     val cocktailIngredients: StateFlow<List<String>> = _cocktailIngredients
-
-
 
     private val _cocktailNameErrorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val cocktailNameErrorState: StateFlow<Boolean> = _cocktailNameErrorState
 
+    init {
+        currentCocktailId = savedStateHandle.get<Long>("cocktailId") ?: -1L
+        if (currentCocktailId != -1L) {
+            viewModelScope.launch(Dispatchers.IO) {
+                _currentCocktail.value = cocktailsDao.getCocktailById(currentCocktailId).first()
+                _cocktailIngredients.value = _currentCocktail.value!!.cocktailIngredients
+            }
+        }
+    }
     fun setCocktailName(cocktailName: String) {
         this.cocktailName = cocktailName
         _cocktailNameErrorState.value = false
@@ -65,6 +77,7 @@ class AddEditCocktailViewModel(
         }
         viewModelScope.launch(Dispatchers.IO) {
             cocktailsDao.insertCocktail(Cocktail(
+                cocktailId = if(currentCocktailId != -1L) currentCocktailId else 0,
                 cocktailName = cocktailName,
                 cocktailDescription = description.ifBlank { null },
                 cocktailRecipe = recipe.ifBlank { null },
