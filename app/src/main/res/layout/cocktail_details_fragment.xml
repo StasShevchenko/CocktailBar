@@ -81,7 +81,7 @@
           android:insetRight="0dp"
           android:insetBottom="0dp"
           android:text="Edit"
-          android:textSize="24dp"
+          android:textSize="24sp"
           android:layout_marginBottom="16dp"
           app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
           />
@@ -96,7 +96,7 @@
           android:insetRight="0dp"
           android:insetBottom="0dp"
           android:text="Delete"
-          android:textSize="24dp"
+          android:textSize="24sp"
           android:layout_marginBottom="16dp"
           app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
           />

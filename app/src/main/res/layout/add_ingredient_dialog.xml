@@ -47,7 +47,7 @@
         android:insetRight="0dp"
         android:insetBottom="0dp"
         android:text="Add"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:layout_marginBottom="16dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
         />
@@ -65,7 +65,7 @@
         android:insetBottom="0dp"
         app:strokeColor="@color/sky_blue"
         android:text="Cancel"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
         android:layout_marginBottom="16dp"
         />
