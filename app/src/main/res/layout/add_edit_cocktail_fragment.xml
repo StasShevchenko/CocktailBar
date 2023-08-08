@@ -23,6 +23,8 @@
                 android:padding="16dp"
                 android:layout_width="216dp"
                 android:scaleType="center"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
                 android:src="@drawable/placeholder"
                 android:layout_height="217dp"/>
         </androidx.cardview.widget.CardView>

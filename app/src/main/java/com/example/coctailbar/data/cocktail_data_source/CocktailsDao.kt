@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.coctailbar.data.cocktail_data_source.model.Cocktail
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CocktailsDao {
@@ -13,7 +14,7 @@ interface CocktailsDao {
     suspend fun getCocktailById(cocktailId: Long): List<Cocktail>
 
     @Query("SELECT * FROM Cocktail")
-    suspend fun getAllCocktails(): List<Cocktail>
+     fun getAllCocktails(): Flow<List<Cocktail>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCocktail(cocktail: Cocktail)

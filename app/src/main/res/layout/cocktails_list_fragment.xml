@@ -6,10 +6,12 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:layout_gravity="center_horizontal"
     tools:context=".presentation.cocktails_list.CocktailsListFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:visibility="gone"
+        android:id="@+id/cocktail_girl_image"
         android:layout_width="283dp"
         android:layout_height="283dp"
         android:layout_marginTop="32dp"
@@ -19,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/title_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="My cocktails"
@@ -27,9 +29,10 @@
         android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/cocktail_girl_image" />
 
     <TextView
+        android:id="@+id/empty_cocktails_message_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -39,7 +42,19 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cocktails_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
