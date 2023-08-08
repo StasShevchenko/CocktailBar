@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".cocktail_details.CocktailDetailsFragment">
+    tools:context=".presentation.cocktail_details.CocktailDetailsFragment">
 
   <ImageView
       android:id="@+id/imageView3"

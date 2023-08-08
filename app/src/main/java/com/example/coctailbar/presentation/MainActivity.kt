@@ -1,4 +1,4 @@
-package com.example.coctailbar
+package com.example.coctailbar.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

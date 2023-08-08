@@ -1,4 +1,4 @@
-package com.example.coctailbar.cocktail_details
+package com.example.coctailbar.presentation.cocktail_details
 
 import androidx.fragment.app.Fragment
 import com.example.coctailbar.R
