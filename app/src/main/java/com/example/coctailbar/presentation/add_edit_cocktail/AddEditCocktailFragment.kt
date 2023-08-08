@@ -28,13 +28,15 @@ class AddEditCocktailFragment : Fragment(R.layout.add_edit_cocktail_fragment) {
         super.onViewCreated(view, savedInstanceState)
         val binding = AddEditCocktailFragmentBinding.bind(view)
 
+
         binding.apply {
+
             cocktailNameEditText.addTextChangedListener {
                 viewModel.setCocktailName(it.toString())
             }
             saveButton.setOnClickListener {
-                if(viewModel.saveCocktail())
-                findNavController().popBackStack()
+                if (viewModel.saveCocktail())
+                    findNavController().popBackStack()
             }
             descriptionEditText.addTextChangedListener {
                 viewModel.setDescription(it.toString())
@@ -72,12 +74,15 @@ class AddEditCocktailFragment : Fragment(R.layout.add_edit_cocktail_fragment) {
                             ingredientChip.setOnClickListener {
                                 viewModel.removeIngredient(index)
                             }
-                            binding.ingredientsChipGroup.addView(ingredientChip, binding.ingredientsChipGroup.childCount - 1)
+                            binding.ingredientsChipGroup.addView(
+                                ingredientChip,
+                                binding.ingredientsChipGroup.childCount - 1
+                            )
                         }
                     }
                 }
                 launch {
-                    viewModel.currentCocktail.collectLatest {cocktail ->
+                    viewModel.currentCocktail.collectLatest { cocktail ->
                         binding.apply {
                             cocktail?.let {
                                 cocktailNameEditText.setText(cocktail.cocktailName)
@@ -91,7 +96,10 @@ class AddEditCocktailFragment : Fragment(R.layout.add_edit_cocktail_fragment) {
                                     ingredientChip.setOnClickListener {
                                         viewModel.removeIngredient(index)
                                     }
-                                    binding.ingredientsChipGroup.addView(ingredientChip, binding.ingredientsChipGroup.childCount - 1)
+                                    binding.ingredientsChipGroup.addView(
+                                        ingredientChip,
+                                        binding.ingredientsChipGroup.childCount - 1
+                                    )
                                 }
                             }
                         }
@@ -115,7 +123,8 @@ class AddEditCocktailFragment : Fragment(R.layout.add_edit_cocktail_fragment) {
         cancelButton!!.setOnClickListener {
             alertDialog.dismiss()
         }
-        val ingredientNameInput = alertDialog.findViewById<TextInputLayout>(R.id.ingredient_name_input)
+        val ingredientNameInput =
+            alertDialog.findViewById<TextInputLayout>(R.id.ingredient_name_input)
         val ingredientEditText =
             alertDialog.findViewById<TextInputEditText>(R.id.ingredient_name_edit_text)
         ingredientEditText!!.addTextChangedListener {
@@ -125,7 +134,7 @@ class AddEditCocktailFragment : Fragment(R.layout.add_edit_cocktail_fragment) {
         addIngredientButton!!.setOnClickListener {
             if (ingredientEditText.text.toString().isBlank()) {
                 ingredientNameInput!!.error = "Add title"
-            } else{
+            } else {
                 viewModel.addIngredient(ingredientEditText.text.toString())
                 alertDialog.dismiss()
             }

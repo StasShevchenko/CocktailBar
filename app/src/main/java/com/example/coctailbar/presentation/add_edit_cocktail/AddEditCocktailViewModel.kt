@@ -22,7 +22,8 @@ class AddEditCocktailViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var currentCocktailId = -1L
+    var currentCocktailId = -1L
+        private set
     private var cocktailName = ""
     private var description = ""
     private var recipe = ""

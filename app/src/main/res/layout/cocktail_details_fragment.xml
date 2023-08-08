@@ -86,6 +86,21 @@
           app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
           />
 
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/delete_button"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:insetLeft="0dp"
+          android:insetTop="0dp"
+          android:backgroundTint="@color/sky_blue"
+          android:insetRight="0dp"
+          android:insetBottom="0dp"
+          android:text="Delete"
+          android:textSize="24dp"
+          android:layout_marginBottom="16dp"
+          app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded"
+          />
+
     </LinearLayout>
 
 

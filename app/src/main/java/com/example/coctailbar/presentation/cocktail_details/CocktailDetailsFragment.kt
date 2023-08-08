@@ -2,6 +2,7 @@ package com.example.coctailbar.presentation.cocktail_details
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,6 +15,7 @@ import com.example.coctailbar.R
 import com.example.coctailbar.databinding.CocktailDetailsFragmentBinding
 import com.example.coctailbar.presentation.MainActivity
 import com.example.coctailbar.presentation.add_edit_cocktail.AddEditCocktailViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -23,9 +25,15 @@ class CocktailDetailsFragment : Fragment(R.layout.cocktail_details_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = CocktailDetailsFragmentBinding.bind(view)
-        binding.editButton.setOnClickListener {
-            val action = CocktailDetailsFragmentDirections.actionCocktailDetailsFragmentToAddEditCocktailFragment(cocktailId = args.cocktailId)
-            findNavController().navigate(action)
+
+        binding.apply{
+            deleteButton.setOnClickListener {
+                showDeleteAlertDialog()
+            }
+            editButton.setOnClickListener {
+                val action = CocktailDetailsFragmentDirections.actionCocktailDetailsFragmentToAddEditCocktailFragment(cocktailId = args.cocktailId)
+                findNavController().navigate(action)
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -58,5 +66,23 @@ class CocktailDetailsFragment : Fragment(R.layout.cocktail_details_fragment) {
             }
         }
 
+    }
+
+    private fun showDeleteAlertDialog() {
+        val alertDialog = MaterialAlertDialogBuilder(
+            requireContext(),
+        ).setTitle("Delete cocktail")
+            .setMessage("Are you sure that you wanna delete this cocktail?")
+            .setPositiveButton("Yes"){ _, _ ->
+                viewModel.deleteCocktail()
+                findNavController().popBackStack()
+            }
+            .setBackground(
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.dialog_background
+                )
+            ).create()
+        alertDialog.show()
     }
 }

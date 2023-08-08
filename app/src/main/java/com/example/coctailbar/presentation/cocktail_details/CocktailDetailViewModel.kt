@@ -38,6 +38,13 @@ class CocktailDetailViewModel(
             }
         }
     }
+    fun deleteCocktail() {
+        viewModelScope.launch(Dispatchers.IO) {
+            currentCocktail.value?.let { cocktailsDao.delete(it) }
+        }
+    }
+
+
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

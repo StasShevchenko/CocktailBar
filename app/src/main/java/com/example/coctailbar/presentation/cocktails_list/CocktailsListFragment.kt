@@ -23,6 +23,7 @@ class CocktailsListFragment : Fragment(R.layout.cocktails_list_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val binding = CocktailsListFragmentBinding.bind(view)
         val cocktailsAdapter = CocktailsAdapter{cocktailId ->
             val action = CocktailsListFragmentDirections.actionCocktailsListFragmentToCocktailDetailsFragment(cocktailId = cocktailId)
@@ -39,7 +40,6 @@ class CocktailsListFragment : Fragment(R.layout.cocktails_list_fragment) {
                 findNavController().navigate(action)
             }
         }
-
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {

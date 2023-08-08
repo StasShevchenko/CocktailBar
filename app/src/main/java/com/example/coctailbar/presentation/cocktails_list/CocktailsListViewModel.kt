@@ -33,7 +33,6 @@ class CocktailsListViewModel(
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val savedStateHandle = createSavedStateHandle()
                 val cocktailsDao = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as MyApplication).db.cocktailsDao
                 CocktailsListViewModel(
                     cocktailsDao = cocktailsDao,
